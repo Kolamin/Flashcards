@@ -26,21 +26,23 @@ public class Main {
         for (int i = 0; i < cards; i++) {
             System.out.println("The card #" + (i + 1) + ": ");
 
-            terms = readln();
 
-            if(myMap.containsKey(terms)){
-                System.out.println("The card \"" + terms +"\" already exists. Try again:");
-                terms = readln();
-            }
+            do{
+                terms = sc.nextLine();
+                if(myMap.containsKey(terms)){
+                    System.out.println("The card \"" + terms +"\" already exists. Try again:");
+                }
+            }while (myMap.containsKey(terms));
 
             System.out.println("The definition of the card #" + (i + 1) + ": ");
-            definitions = readln();
 
+            do{
+                definitions = sc.nextLine();
 
-            if(myMap.containsValue(definitions)){
-                System.out.println("The definition \"" + definitions + "\" already exists. Try again:");
-                definitions = readln();
-            }
+                if(myMap.containsValue(definitions)){
+                    System.out.println("The definition \"" + definitions + "\" already exists. Try again:");
+                }
+            }while (myMap.containsValue(definitions));
 
             myMap.put(terms, definitions);
         }
@@ -48,7 +50,6 @@ public class Main {
         play(myMap);
 
     }
-
     // Question the player about all the new words they have entered.
     // The program should give the term and ask for a definition.
     private static void play(Map<String, String> tempMap) {
